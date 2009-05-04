@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>test</title>
+	<meta name="author" content="Dirk Ginader">
+	<style type="text/css">
+	    .col{
+	        display:block;
+	        float:left;
+	    }
+	   .error{
+	       border:1px solid red;
+	   }
+	</style>
+</head>
+<body>
+<div class="col">
+    <form action="test2.html" id="test-form1">
+        <fieldset>
+            <legend>Personal data</legend>
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" value="" id="firstname">
+            <br>
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" value="" id="lastname">
+            <br>
+            <label for="zip">Post code</label>
+            <input type="text" name="zip" value="" id="zip">
+            <br>
+            <label for="age">Age</label>
+            <input type="text" name="age" value="" id="age">
+            <br>
+            <label for="city">City</label>
+            <input type="text" name="city" value="" id="city">
+            <br>
+            <label for="email">Email</label>
+            <input type="text" name="email" value="" id="email">
+            <br>
+            <label for="ip">IP Adress</label>
+            <input type="text" name="ip" value="" id="ip">
+        </fieldset>
+        <fieldset>
+            <legend>Want?</legend>
+            <label for="want-yes">Yes</label>
+            <input type="radio" name="want" value="yes" id="want-yes">
+            <br>
+            <label for="want-no">No</label>
+            <input type="radio" name="want" value="no" id="want-no">
+            <br>
+            <label for="want-maybe">Maybe</label>
+            <input type="radio" name="want" value="maybe" id="want-maybe">
+        </fieldset>
+        <fieldset>
+            <legend>Really?</legend>
+            <label for="really">Sure?</label>
+            <select name="really" id="really">
+                <option value="">Choose</option>
+                <option value="alright">Alright</option>
+                <option value="probably">Probably</option>
+                <option value="no-way">No Way!</option>
+            </select>
+            <br>
+            <input type="submit" name="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+<script src="js/jsCheckForm.js" type="text/javascript"></script>
+<script src="rules.json.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    testForm = new JsFormCheck({
+		targetFormId: "test-form1",
+		debug:true,
+		rules:jsCheckFormRules
+	});
+	testForm.addValidator('isGermanPLZ',function(el){
+        var filter  = /^\d{5,5}$/;
+        return filter.test(el.value);
+    });
+    testForm.setErrorRenderer('above');
+</script>
+</body>
+</html>
